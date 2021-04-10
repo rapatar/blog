@@ -1,0 +1,15 @@
+---
+layout: storydefault
+title: Хорда
+---
+
+```
+<h1>{{ page.title }}</h1>
+<ul class="posts">
+
+      <di
+    <li><a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+{% endfor %}
+
+</ul>
+```
