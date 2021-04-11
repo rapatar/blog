@@ -1,27 +1,30 @@
 ---
 layout: default
+title: My Blog
 ---
 
-<!-- render pagination links if there are more than one pages -->
-{％ if paginator.total_pages > 1 ％}
-<div class="pagination">
-  {％ if paginator.previous_page ％}
-    <!-- special case the second page to link back to index.html -->
-    {％ if paginator.page == 2 ％}
-      <a href="https://www.rapatar.eu.org/blog">&laquo; Prev</a>
-    {％ else ％}
-      <a href="https://www.rapatar.eu.org/blog/page/">&laquo; Prev</a>
-    {％ endif ％}
-  {％ else ％}
-    <!-- if no 'previous' pages exit, render a span rather than an anchor -->
-    <span>&laquo; Prev</span>
-  {％ endif ％}
+<!-- Цикл по списку постов, разбитых на страницы-->
+{% for post in paginator.posts %}
+  <h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
+  <p class="author">
+    <span class="date">{{ post.date }}</span>
+  </p>
+  <div class="content">
+    {{ post.content }}
+  </div>
+{% endfor %}
 
-  {％ if paginator.next_page ％}
-    <a class='next' href="https://www.rapatar.eu.org/blog/page/">Next &raquo;</a>
-  {％ else ％}
-    <!-- if no 'next' pages exit, render a span rather than an anchor -->
-    <span class='next'>Next &raquo;</span>
-  {％ endif ％}
+<!-- Ссылки на страницы с разбивкой-->
+<div class="pagination">
+  {% if paginator.previous_page %}
+    <a href="{{ paginator.previous_page_path }}" class="previous">Previous</a>
+  {% else %}
+    <span class="previous">Previous</span>
+  {% endif %}
+  <span class="page_number ">Page: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  {% if paginator.next_page %}
+    <a href="{{ paginator.next_page_path }}" class="next">Next</a>
+  {% else %}
+    <span class="next ">Next</span>
+  {% endif %}
 </div>
-{％ endif ％}
