@@ -3,7 +3,6 @@ layout: default
 title: My Blog
 ---
 
-<!-- This loops through the paginated posts -->
 {% for post in paginator.posts %}
   <h1><a href="/blog/{{ post.url }}">{{ post.title }}</a></h1>
   <p class="author">
@@ -14,7 +13,6 @@ title: My Blog
   </div>
 {% endfor %}
 
-<!-- Pagination links -->
 <div class="pagination">
   {% if paginator.previous_page %}
     <a href="/blog/{{ paginator.previous_page_path }}" class="previous">
